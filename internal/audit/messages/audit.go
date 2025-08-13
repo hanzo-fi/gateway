@@ -8,7 +8,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 
-	"github.com/formancehq/go-libs/publish"
+	"github.com/formancehq/go-libs/v3/publish"
 	"github.com/google/uuid"
 	"go.uber.org/zap"
 )

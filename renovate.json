@@ -16,21 +16,6 @@
       ]
     },
     {
-      "groupName": "security updates (minor only)",
-      "groupSlug": "security-minor",
-      "matchPackageNames": [
-        "*"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "isVulnerabilityAlert": true,
-      "enabled": true,
-      "prPriority": 10,
-      "labels": ["security"]
-    },
-    {
       "matchPackageNames": [
         "*"
       ],
@@ -48,6 +33,21 @@
       ],
       "isVulnerabilityAlert": false,
       "enabled": false
+    },
+    {
+      "groupName": "security updates (minor only)",
+      "groupSlug": "security-minor",
+      "matchPackageNames": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "isVulnerabilityAlert": true,
+      "enabled": true,
+      "prPriority": 10,
+      "labels": ["security"]
     }
   ],
   "enabledManagers": [

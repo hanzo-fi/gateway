@@ -64,8 +64,7 @@
     "github-actions"
   ],
   "baseBranchPatterns": [
-    "main",
-    "/^release\\/.*/"
+    "feat/deps-upgrade"
   ],
   "rebaseWhen": "behind-base-branch",
   "automerge": true,

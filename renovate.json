@@ -1,6 +1,73 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>formancehq/shared-config//renovate/presets/golang"
-  ]
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "groupName": "all patched dependencies",
+      "groupSlug": "all-patch",
+      "matchPackageNames": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "digest"
+      ]
+    },
+    {
+      "groupName": "security updates (minor only)",
+      "groupSlug": "security-minor",
+      "matchPackageNames": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "isVulnerabilityAlert": true,
+      "enabled": true,
+      "prPriority": 10,
+      "labels": ["security"]
+    },
+    {
+      "matchPackageNames": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "isVulnerabilityAlert": false,
+      "enabled": false
+    }
+  ],
+  "enabledManagers": [
+    "gomod",
+    "argocd",
+    "docker-compose",
+    "dockerfile",
+    "helmv3",
+    "kustomize",
+    "kubernetes",
+    "terraform",
+    "nix",
+    "npm",
+    "github-actions"
+  ],
+  "baseBranchPatterns": [
+    "main",
+    "/^release\\/.*/"
+  ],
+  "rebaseWhen": "behind-base-branch",
+  "automerge": true,
+  "platformAutomerge": true
 }

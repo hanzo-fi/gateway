@@ -56,6 +56,7 @@ type Audit struct {
 	PublisherNatsClientId          string        `json:"publisher_nats_client_id,omitempty"`
 	PublisherNatsMaxReconnects     int           `json:"publisher_nats_max_reconnects,omitempty"`
 	PublisherNatsMaxReconnectsWait time.Duration `json:"publisher_nats_max_reconnects_wait,omitempty"`
+	AutoProvision                  bool
 }
 
 // Implements the caddy.Module interface.
@@ -68,6 +69,9 @@ func (Audit) CaddyModule() caddy.ModuleInfo {
 
 func parseAuditCaddyfile(h httpcaddyfile.Helper) (caddyhttp.MiddlewareHandler, error) {
 	a := new(Audit)
+	// default value to keep compatibility
+	a.AutoProvision = true
+
 	for h.Next() {
 		for h.NextBlock(0) {
 			key := h.Val()
@@ -162,11 +166,36 @@ func parseAuditCaddyfile(h httpcaddyfile.Helper) (caddyhttp.MiddlewareHandler, e
 					return nil, h.Errf("failed to parse publisher_nats_max_reconnects_wait: %v", err)
 				}
 				a.PublisherNatsMaxReconnectsWait = res
+			case "topic_name":
+				var topicName string
+				if !h.AllArgs(&topicName) {
+					return nil, h.Errf("expected one string value")
+				}
+				a.TopicName = topicName
+			case "auto_provision":
+				var autoProvision string
+				if !h.AllArgs(&autoProvision) {
+					return nil, h.Errf("expected one boolean value")
+				}
+				v, err := strconv.ParseBool(autoProvision)
+				if err != nil {
+					return nil, h.Errf("failed to parse auto_provision: %v", err)
+				}
+				a.AutoProvision = v
 			default:
 				return nil, h.Errf("unrecognized option: %s", key)
 			}
 		}
 	}
+
+	if a.TopicName == "" {
+		if os.Getenv("STACK") == "" {
+			return nil, fmt.Errorf("STACK environment variable is not set and topic_name parameter is not defined")
+		}
+		a.TopicName = os.Getenv("STACK") + "-audit"
+	}
+
+	fmt.Println("Initialize with topic name: " + a.TopicName)
 
 	return a, nil
 }
@@ -194,9 +223,6 @@ func (a *Audit) Provision(ctx caddy.Context) error {
 		},
 	}
 
-	// TODO(gfyrag): do not use env var directly!
-	a.TopicName = os.Getenv("STACK") + "-audit"
-
 	if a.PublisherKafkaEnabled {
 		return a.provisionKafkaPublisher()
 	}
@@ -215,7 +241,7 @@ func newNatsPublisherWithConn(conn *nats.Conn, logger watermill.LoggerAdapter, c
 func (a *Audit) provisionNatsPublisher() error {
 
 	jetStreamConfig := wNats.JetStreamConfig{
-		AutoProvision: true,
+		AutoProvision: a.AutoProvision,
 		DurablePrefix: "gateway",
 	}
 

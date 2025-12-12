@@ -35,8 +35,7 @@ jobs:
         with:
           token: ${{ secrets.NUMARY_GITHUB_TOKEN }}
       - run: >
-          nix --extra-experimental-features "nix-command" --extra-experimental-features "flakes"
-          develop --impure --command just pre-commit
+          nix --extra-experimental-features "nix-command" --extra-experimental-features "flakes" develop --impure --command just pre-commit
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
       - name: Get changed files
@@ -92,8 +91,7 @@ jobs:
           username: "NumaryBot"
           password: ${{ secrets.NUMARY_GITHUB_TOKEN }}
       - run: >
-          nix --extra-experimental-features "nix-command" --extra-experimental-features "flakes" 
-          develop --impure --command just release-ci
+          nix --extra-experimental-features "nix-command" --extra-experimental-features "flakes" develop --impure --command just release-ci
         env:
           GITHUB_TOKEN: ${{ secrets.NUMARY_GITHUB_TOKEN }}
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
@@ -127,8 +125,8 @@ jobs:
           COMPONENT: payments
           ARGOCD_REGION_AUTH_TOKEN: ${{ secrets.ARGOCD_REGION_AUTH_TOKEN }}
         run: >
-          earthly  
-          --no-output 
+          earthly
+          --no-output
           --secret AUTH_TOKEN=$ARGOCD_REGION_AUTH_TOKEN
           +deploy-staging
           --TAG=$TAG

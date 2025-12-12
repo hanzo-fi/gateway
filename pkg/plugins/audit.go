@@ -3,6 +3,7 @@ package plugins
 import (
 	"bytes"
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"net"
@@ -24,7 +25,6 @@ import (
 	"github.com/ThreeDotsLabs/watermill-kafka/v3/pkg/kafka"
 	wNats "github.com/ThreeDotsLabs/watermill-nats/v2/pkg/nats"
 	"github.com/nats-io/nats.go"
-	"github.com/pkg/errors"
 	"github.com/xdg-go/scram"
 
 	"github.com/ThreeDotsLabs/watermill/message"

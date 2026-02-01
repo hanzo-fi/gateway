@@ -9,7 +9,7 @@ require (
 	github.com/ThreeDotsLabs/watermill v1.5.1
 	github.com/ThreeDotsLabs/watermill-kafka/v3 v3.1.2
 	github.com/ThreeDotsLabs/watermill-nats/v2 v2.1.3
-	github.com/caddyserver/caddy/v2 v2.10.0
+	github.com/caddyserver/caddy/v2 v2.10.2
 	github.com/formancehq/go-libs/v3 v3.6.0
 	github.com/google/uuid v1.6.0
 	github.com/nats-io/nats.go v1.48.0

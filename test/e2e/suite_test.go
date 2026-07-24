@@ -16,12 +16,12 @@ import (
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig"
 	_ "github.com/caddyserver/caddy/v2/modules/standard"
-	_ "github.com/formancehq/stack/components/gateway/pkg/plugins"
+	_ "github.com/hanzo-fi/gateway/pkg/plugins"
 
-	logging "github.com/formancehq/go-libs/v5/pkg/observe/log"
-	"github.com/formancehq/go-libs/v5/pkg/testing/deferred"
-	"github.com/formancehq/go-libs/v5/pkg/testing/platform/natstesting"
-	"github.com/formancehq/go-libs/v5/pkg/audit"
+	logging "github.com/hanzo-fi/go-libs/v5/pkg/observe/log"
+	"github.com/hanzo-fi/go-libs/v5/pkg/testing/deferred"
+	"github.com/hanzo-fi/go-libs/v5/pkg/testing/platform/natstesting"
+	"github.com/hanzo-fi/go-libs/v5/pkg/audit"
 	"github.com/nats-io/nats.go"
 
 	. "github.com/onsi/ginkgo/v2"

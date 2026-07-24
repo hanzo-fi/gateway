@@ -1,4 +1,4 @@
-module github.com/formancehq/stack/components/gateway
+module github.com/hanzo-fi/gateway
 
 go 1.25.1
 
@@ -11,7 +11,7 @@ require (
 	github.com/ThreeDotsLabs/watermill-kafka/v3 v3.1.2
 	github.com/ThreeDotsLabs/watermill-nats/v2 v2.1.3
 	github.com/caddyserver/caddy/v2 v2.11.4
-	github.com/formancehq/go-libs/v5 v5.6.0
+	github.com/hanzo-fi/go-libs/v5 v5.6.2
 	github.com/nats-io/nats.go v1.49.0
 	github.com/onsi/ginkgo/v2 v2.28.1
 	github.com/onsi/gomega v1.39.1

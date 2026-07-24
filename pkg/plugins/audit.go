@@ -23,12 +23,12 @@ import (
 	"github.com/xdg-go/scram"
 	"go.uber.org/zap"
 
-	"github.com/formancehq/go-libs/v5/pkg/audit"
-	"github.com/formancehq/go-libs/v5/pkg/audit/httpaudit"
-	v5oidc "github.com/formancehq/go-libs/v5/pkg/authn/oidc"
-	v5client "github.com/formancehq/go-libs/v5/pkg/authn/oidc/client"
-	"github.com/formancehq/go-libs/v5/pkg/messaging/publish"
-	logging "github.com/formancehq/go-libs/v5/pkg/observe/log"
+	"github.com/hanzo-fi/go-libs/v5/pkg/audit"
+	"github.com/hanzo-fi/go-libs/v5/pkg/audit/httpaudit"
+	v5oidc "github.com/hanzo-fi/go-libs/v5/pkg/authn/oidc"
+	v5client "github.com/hanzo-fi/go-libs/v5/pkg/authn/oidc/client"
+	"github.com/hanzo-fi/go-libs/v5/pkg/messaging/publish"
+	logging "github.com/hanzo-fi/go-libs/v5/pkg/observe/log"
 )
 
 const EventApp = "gateway"

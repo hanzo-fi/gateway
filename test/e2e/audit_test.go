@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/formancehq/go-libs/v5/pkg/testing/deferred"
-	"github.com/formancehq/go-libs/v5/pkg/testing/platform/natstesting"
-	"github.com/formancehq/go-libs/v5/pkg/audit"
+	"github.com/hanzo-fi/go-libs/v5/pkg/testing/deferred"
+	"github.com/hanzo-fi/go-libs/v5/pkg/testing/platform/natstesting"
+	"github.com/hanzo-fi/go-libs/v5/pkg/audit"
 	"github.com/nats-io/nats.go"
 
 	. "github.com/onsi/ginkgo/v2"

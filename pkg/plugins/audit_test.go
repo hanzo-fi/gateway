@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	v5oidc "github.com/formancehq/go-libs/v5/pkg/authn/oidc"
+	v5oidc "github.com/hanzo-fi/go-libs/v5/pkg/authn/oidc"
 )
 
 func TestDiscoverAuthConfigurationUsesAuthIssuerWithAuthURLDiscovery(t *testing.T) {
